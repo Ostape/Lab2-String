@@ -29,7 +29,7 @@ public class Text {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        for (Sentence sentence: sentences) {
+        for (Sentence sentence : sentences) {
             str.append(sentence).append("\n");
         }
         return str.toString();

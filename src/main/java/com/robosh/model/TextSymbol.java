@@ -22,7 +22,7 @@ public abstract class TextSymbol {
     public boolean equals(Object o) {
         if (!(o instanceof TextSymbol)) return false;
         TextSymbol that = (TextSymbol) o;
-        return that.getSymbol().equals(this.getSymbol());
+        return that.getSymbol().equalsIgnoreCase(this.getSymbol());
     }
 
     @Override
