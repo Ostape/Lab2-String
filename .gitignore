@@ -14,6 +14,8 @@ target/
 .mtj.tmp/
 
 # Package Files #
+*.xml
+*.iml
 *.jar
 *.war
 *.nar
