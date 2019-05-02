@@ -14,11 +14,9 @@ public class Main {
 
         TextParserService textParserService = new TextParserService(textFromFile);
         Text text = textParserService.getText();
-        System.out.println(text);
-//
-//        System.out.println(textParserService.splitIntoSentences().get(5));
+
+        Text newText = new Text(textParserService.getSentencesWithDuplicatedWords());
+        System.out.println(newText);
     }
-
-
 
 }

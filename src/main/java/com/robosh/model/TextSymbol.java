@@ -20,10 +20,9 @@ public abstract class TextSymbol {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (!(o instanceof TextSymbol)) return false;
         TextSymbol that = (TextSymbol) o;
-        return Objects.equals(symbol, that.symbol);
+        return that.getSymbol().equals(this.getSymbol());
     }
 
     @Override

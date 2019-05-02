@@ -1,8 +1,6 @@
 package com.robosh.service;
 
 import com.robosh.model.*;
-
-import java.io.File;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,25 +21,23 @@ public class TextParserService {
                 .replaceAll(UNUSEFUL_SPACES, " ");
     }
 
-    private List<String> getSentencesWithDuplicatedWords(List<String> sentences) {
-
-        List<String> sentencesWithWords = new ArrayList<>();
-
-        for (String sentence : sentences) {
-            String[] words = sentence.split(BETWEEN_WORDS);
-
+    public List<Sentence> getSentencesWithDuplicatedWords(){
+        List<Sentence> duplicatedSentences = new LinkedList<>();
+        for (Sentence sentence : text.getSentences()){
+            int size = sentence.getPartOfSentence().size();
+            List<TextSymbol> textSymbols = sentence.getPartOfSentence();
             point:
-            for (int j = 0; j < words.length - 1; j++) {
-                String word = words[j];
-                for (int i = j + 1; i < words.length; i++) {
-                    if (word.matches(WORD) && word.equalsIgnoreCase(words[i])) {
-                        sentencesWithWords.add(sentence);
+            for (int i = 0; i < size-1; i++){
+                for (int j = i+1; j < size; j++){
+                    if (isWord(textSymbols.get(i)) &&
+                            textSymbols.get(i).equals(textSymbols.get(j))){
+                        duplicatedSentences.add(sentence);
                         break point;
                     }
                 }
             }
         }
-        return sentencesWithWords;
+        return duplicatedSentences;
     }
 
     public Text getText() {
@@ -81,4 +77,7 @@ public class TextParserService {
         return sentences;
     }
 
+    private boolean isWord(TextSymbol symbol){
+        return symbol.getSymbol().matches(WORD);
+    }
 }
