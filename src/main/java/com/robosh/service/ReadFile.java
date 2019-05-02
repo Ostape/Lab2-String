@@ -1,16 +1,19 @@
 package com.robosh.service;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
 public class ReadFile {
     private ReadFile(){}
-
     public static String readFile(String fileName) {
         String path = "E:\\KPI\\StringLab2\\" + fileName;
+        File file = new File(path);
+
+        if (fileNotExists(file) || fileCannotRead(file)){
+            throw new IllegalArgumentException("Cannot find file or cannot read");
+        }
+
         StringBuilder text = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(
@@ -23,5 +26,23 @@ public class ReadFile {
             e.printStackTrace();
         }
         return text.toString();
+    }
+
+    private static boolean fileNotExists(File file){
+        return !file.exists();
+    }
+
+    private static boolean fileCannotRead(File file){
+        return !file.canRead();
+    }
+
+    public static Scanner scanedFile(File file){
+        Scanner in = null;
+        try {
+            in = new Scanner(new FileReader(file));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return in;
     }
 }

@@ -1,9 +1,12 @@
 package com.robosh.service;
 
-public abstract class Regex {
-    public final static String UNUSEFUL_SPACES = "[\\s]{2,}";
-    public final static String SUPERFLUOUS_SIGNS = "['\"“”]+";
-    public final static String END_OF_LINE = "[.!?]+[\\s]";
-    public final static String BETWEEN_WORDS = "[\\s,]+";
-    public final static String WORD = "[a-zA-Z]+[-’]?[a-zA-Z]+";
+public interface Regex {
+    //String UNUSEFUL_SPACES = "[\\s]{2,}";
+    String UNUSEFUL_SPACES = "[ ]{2,}";
+    //String SUPERFLUOUS_SIGNS = "['\"“”]+";
+    String TEXT_SYMBOLS = "[\\w]+([’-]?[\\w]+)?";
+    String QUOTES = "['\"“”]+";
+    String END_OF_LINE = "[.!?]+[”]?[\\s]";
+    String BETWEEN_WORDS = "[\\s,:;()[]{}]+";
+    String WORD = "[a-zA-Z]+[-’]?[a-zA-Z]+";
 }

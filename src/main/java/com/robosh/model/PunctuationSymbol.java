@@ -1,22 +1,9 @@
 package com.robosh.model;
 
-public class PunctuationSymbol implements TextSymbol {
-    private String punctuation;
+public class PunctuationSymbol extends TextSymbol {
 
-    public PunctuationSymbol(String punctuation) {
-        this.punctuation = punctuation;
+    public PunctuationSymbol(String symbol) {
+        super(symbol);
     }
 
-    public String getPunctuation() {
-        return punctuation;
-    }
-
-    public void setPunctuation(String punctuation) {
-        this.punctuation = punctuation;
-    }
-
-    @Override
-    public String toString() {
-        return punctuation;
-    }
 }
